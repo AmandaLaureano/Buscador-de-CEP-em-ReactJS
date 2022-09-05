@@ -13,7 +13,7 @@ function App() {
       <h2 className='subtitle'>Digite um CEP abaixo e busque informações</h2>
 
       <div className="containerInput">
-        <input type="text" placeholder="Digite seu CEP" value={input}></input>
+        <input type="text" placeholder="Digite seu CEP" value={input} onChange={(e) => setInput(e.target.value)}></input>
         <button className="buttonSearch"> 
         <FiSearch size={25} color="#FFF"/>
         </button>
