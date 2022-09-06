@@ -7,8 +7,11 @@ import api from './services/api';
 function App() {
 
   const [input, setInput] = useState('') //Input define o estado, e setInput define uma função passando um valor novo para ele.
+  const [cep, setCep] = useState({});
+
 
   async function handleSearch(){
+
    if(input === ""){
     alert("Digite um CEP!")
     return;
@@ -16,7 +19,10 @@ function App() {
 
    try{
     const response = await api.get(`${input}/json`);
-    console.log(response)
+    console.log(response.data)
+    setCep(response.data)
+    setInput("")
+
    }catch{
     alert("Ops! Erro ao buscar o CEP digitado");
     setInput("")
@@ -35,15 +41,19 @@ function App() {
         </button>
       </div>
 
-      <main className='main'>
-        <h2>CEP: 89400000</h2>
-        <span>Rua: Avenida João Pessoa</span>
-        <span>Complemento: Casa</span>
-        <span>São Pedro</span>
-        <span>Porto União - SC</span>
+
+      {Object.keys(cep).length > 0 && (
+        <main className='main'>
+        <h2>CEP: {cep.cep}</h2>
+
+        <span>{cep.logradouro}</span>
+        <span>Complemento: {cep.complemento}</span>
+        <span>{cep.bairro}</span>
+        <span>{cep.localidade} - {cep.uf}</span>
       
       </main>
-      
+      )}
+
       
     </div>
   );
