@@ -40,7 +40,7 @@ function App() {
         <FiSearch size={25} color="#FFF"/>
         </button>
       </div>
-
+\
 
       {Object.keys(cep).length > 0 && (
         <main className='main'>
